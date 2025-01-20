@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Advertisements>
+	<Ad>
+		<ImageUrl>~/Images/Ad1.jpg</ImageUrl>
+		<NavigateUrl>https://www.example1.com</NavigateUrl>
+		<AlternateText>Ad 1 - Visit Example 1</AlternateText>
+		<Impressions>50</Impressions>
+	</Ad>
+	<Ad>
+		<ImageUrl>~/Images/Ad2.jpg</ImageUrl>
+		<NavigateUrl>https://www.example2.com</NavigateUrl>
+		<AlternateText>Ad 2 - Visit Example 2</AlternateText>
+		<Impressions>30</Impressions>
+	</Ad>
+	<Ad>
+		<ImageUrl>~/Images/Ad3.jpg</ImageUrl>
+		<NavigateUrl>https://www.example3.com</NavigateUrl>
+		<AlternateText>Ad 3 - Visit Example 3</AlternateText>
+		<Impressions>20</Impressions>
+	</Ad>
+</Advertisements>

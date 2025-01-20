@@ -1,0 +1,133 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model UserModel
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+    }
+
+    h2 {
+        text-align: center;
+        color: #333;
+    }
+
+    form {
+        width: 50%;
+        margin: 50px auto;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+        form input, form select, form button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        form button {
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+            form button:hover {
+                background: #0056b3;
+            }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+        .form-group label {
+            font-weight: bold;
+        }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const profilePicInput = document.querySelector("input[name='profilePic']");
+        profilePicInput.addEventListener("change", (e) => {
+            const file = e.target.files[0];
+            if (file && file.size > 2 * 1024 * 1024) { // 2MB limit
+                alert("Profile picture size must be less than 2MB.");
+                e.target.value = "";
+            }
+        });
+    });
+</script>
+
+<h2>Register</h2>
+
+<form asp-action="Register" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="Name">Full Name</label>
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "Enter your full name" })
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label for="Username">Username</label>
+        @Html.TextBoxFor(model => model.Username, new { @class = "form-control", placeholder = "Enter your username" })
+        @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label for="Email">Email</label>
+        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "Enter your email" })
+        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label for="Gender">Gender</label>
+        @Html.DropDownListFor(model => model.Gender, new List<SelectListItem>
+        {
+            new SelectListItem { Text = "Male", Value = "Male" },
+            new SelectListItem { Text = "Female", Value = "Female" }
+        }, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label for="DateOfBirth">Date of Birth</label>
+        @Html.TextBoxFor(model => model.DateOfBirth, "{0:yyyy-MM-dd}", new { @class = "form-control", placeholder = "Enter your date of birth" })
+        @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label for="profilePic">Profile Picture</label>
+        <input type="file" name="profilePic" class="form-control" />
+        @Html.ValidationMessageFor(model => model.ProfilePic, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label for="Password">Password</label>
+        @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Enter your password" })
+        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label for="ConfirmPassword">Confirm Password</label>
+        <input type="password" name="ConfirmPassword" class="form-control" placeholder="Confirm your password" />
+        @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label for="AcceptTerms">
+            @Html.CheckBoxFor(model => model.AcceptTerms) I accept the terms and conditions
+        </label>
+        @Html.ValidationMessageFor(model => model.AcceptTerms, "", new { @class = "text-danger" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>

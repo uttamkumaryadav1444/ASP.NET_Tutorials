@@ -1,0 +1,2 @@
+E:\ASP.NET\Login_Registation web page\obj\Debug\Login_Registation web page.csproj.AssemblyReference.cache
+E:\ASP.NET\Login_Registation web page\obj\Debug\Login_Registation web page.csproj.CoreCompileInputs.cache
